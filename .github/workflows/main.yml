@@ -1,0 +1,17 @@
+name: Cypress test with Github Actions
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+     # the added cypress tests in specs
+          spec: cypress/integration/Test_Exercise.cy.js
